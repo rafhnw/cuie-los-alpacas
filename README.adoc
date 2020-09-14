@@ -1,0 +1,43 @@
+== cuie Courseware
+Das Courseware-Projekt dient dazu die Beispiele und Musterlösungen aus dem Unterricht zu verwalten und die Übungsbeispiele zu implementieren.
+
+In einem ersten Schritt soll das initial enthaltene "Hello World"-Beispiel in der Entwicklungsumgebung gestartet werden können.
+
+=== Setup mit IDE-Unterstützung
+In IntelliJ kann via `File -> New -> Project from Version Control ...-> Git`
+
+ihr Repository von GitHub kopiert (gecloned) und anschliessend ein IntelliJ-Projekt generiert werden.
+
+Wenn alles gut gegangen ist sollte im Project-View der Java-Ordner unter `src/main` blau sein, der Java-Ordner unter `src/test` grün sein.
+
+Stellen Sie sicher, dass der aktuelle JDK im Projekt verwendet wird.
+
+* unter `File -> Project Structure -> Project -> Project SDK` einen JDK mit integriertem JavaFX einstellen (am besten den Liberica JDK.FX)
+* in `IntelliJ IDEA -> Preferences -> Gradle -> Gradle JVM` am besten `Project SDK` eintragen
+
+Nun sollten das enthaltene Beispielprogramm gestartet werden können.
+
+
+=== Bei Problemen mit dem IntelliJ-Setup
+Es kommt immer wieder mal vor, dass der Setup des IntelliJ-Projekts nicht auf Anhieb funktioniert oder "plötzlich" nicht mehr funktioniert.
+
+Sie brauchen in so einem Fall NICHT nochmal den Invitation-Link annehmen oder das Projekt via “Check out from Version Control” oder "git clone …" nochmal anlegen.
+
+Statt dessen ist es am besten den IntelliJ-Setup neu generieren zu lassen. Dazu verwendet man den File `build.gradle`, der eine komplette und IDE-unabhängige Projektbeschreibung enthält.
+
+Die einzelnen Schritte:
+
+* Schliessen Sie alle geöffneten Projekte (`File -> Close Project`)
+* Wählen Sie OPEN
+* Es erscheint ein Finder-Fenster mit dem Sie zu ihrem Projekt navigieren.
+* Dort wählen Sie den File `build.gradle` aus.
+* Beim nächsten Dialog `Open as Project` wählen.
+* In der "Project Structure" kontrollieren ob Java 13 ausgewählt ist (und dieser JDK JavaFX enthält).
+* In den "Settings" ("Preferences" auf dem Mac) überprüfen, ob für Gradle als "Gradle JVM" der Project-SDK eingestellt ist.
+
+Jetzt sollte der Projekt-Setup korrekt und  `HelloWorld` und `ProjectSetupTest` ausführbar sein.
+
+Analog können Sie auch `build.gradle` in Eclipse oder NetBeans für den Projekt-Setup verwenden.
+
+=== Bitte beachten Sie:
+Die benoteten Hausarbeiten und die Projektarbeit werden *nicht* in diesem Courseware-Projekt bearbeitet. Dafür wird es separate Repositories/Projekte mit dem gleichen Aufbau geben.
