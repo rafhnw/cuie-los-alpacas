@@ -1,4 +1,4 @@
-package cuie.module08.timecontrol_manufactory.demo;
+package cuie.assignment02.timecontrol_manufactory.demo;
 
 import java.time.LocalTime;
 

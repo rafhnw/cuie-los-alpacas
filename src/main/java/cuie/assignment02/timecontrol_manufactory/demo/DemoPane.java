@@ -1,7 +1,7 @@
-package cuie.module08.timecontrol_manufactory.demo;
+package cuie.assignment02.timecontrol_manufactory.demo;
 
-import cuie.module08.timecontrol_manufactory.MyTimeControl;
-import cuie.module08.timecontrol_manufactory.SkinType;
+import cuie.assignment02.timecontrol_manufactory.MyTimeControl;
+import cuie.assignment02.timecontrol_manufactory.SkinType;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;

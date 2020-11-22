@@ -1,6 +1,5 @@
-package cuie.module08.timecontrol_manufactory;
+package cuie.assignment02.timecontrol_manufactory;
 
-import javafx.scene.control.Label;
 import javafx.scene.control.SkinBase;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;

@@ -1,4 +1,4 @@
-package cuie.module08.timecontrol_manufactory;
+package cuie.assignment02.timecontrol_manufactory;
 
 import java.util.function.Function;
 
