@@ -1,0 +1,12 @@
+.my-time-control {
+    -base-color: blue;
+    -fx-background-color: white;
+}
+
+.my-time-control .editable-time-field {
+    -fx-background-color: magenta;
+}
+
+.my-time-control .caption-label {
+    -fx-fill: pink;
+}
