@@ -6,5 +6,5 @@ Rahel Koch and Leonie Jacobs
 Figma: https://www.figma.com/file/CxJJEDgKqkKLhH2qs4DqXC/cuie?node-id=33%3A2
 
 Idea: The idea is to create a business control which helps to select the start and end time of a meeting.
-It consists of two input fields which  selection can be made manually or through a dropdown choice. The duration of the meeting is  calculated according to the input in the end field.
+It consists of two input fields which selection can be made manually or through a dropdown choice. The duration of the meeting is calculated according to the input in the end field.
 The fields are validated corresponding to the duration time. If correct, the fields turn green, otherwise they turn red.

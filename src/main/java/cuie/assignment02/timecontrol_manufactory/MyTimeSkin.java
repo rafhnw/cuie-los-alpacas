@@ -1,12 +1,12 @@
 package cuie.assignment02.timecontrol_manufactory;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.SkinBase;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.util.converter.LocalTimeStringConverter;
 
 class MyTimeSkin extends SkinBase<MyTimeControl> {
     // wird spaeter gebraucht
@@ -21,8 +21,8 @@ class MyTimeSkin extends SkinBase<MyTimeControl> {
                                                                    ICON_SIZE, ICON_SIZE,
                                                                    true, false));
 
-
     private TextField editableTimeField;
+    private Label readOnlyField; //todo was ist für uns das richtige control?
     private Text captionLabel;
 
     MyTimeSkin(MyTimeControl control) {
@@ -43,21 +43,43 @@ class MyTimeSkin extends SkinBase<MyTimeControl> {
         editableTimeField = new TextField();
         editableTimeField.getStyleClass().add("editable-time-field");
 
+        // set visible if editable
+        editableTimeField.setVisible(getSkinnable().isEditable());
+
         captionLabel = new Text();
         captionLabel.getStyleClass().add("caption-label");
+
+        readOnlyField = new Label();
+        readOnlyField.getStyleClass().add("read-only-field");
+
+        // only visible if not editable
+        readOnlyField.setVisible(!getSkinnable().isEditable());
     }
 
+    // alle parts müssen hier hinzugefügt werden
     private void layoutParts() {
-        getChildren().addAll(new VBox(captionLabel, editableTimeField));
+        getChildren().addAll(new VBox(captionLabel, editableTimeField, readOnlyField));
     }
 
     private void setupValueChangeListeners() {
+        // react on property change
+        getSkinnable().editableProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                editableTimeField.setVisible(true);
+                readOnlyField.setVisible(false);
+            } else {
+                editableTimeField.setVisible(false);
+                readOnlyField.setVisible(true);
+            }
+        });
     }
 
     private void setupBindings() {
-        editableTimeField.textProperty().bindBidirectional(getSkinnable().timeValueProperty(),
-                                                           new LocalTimeStringConverter());
+        editableTimeField.textProperty().bindBidirectional(getSkinnable().timeAsStringProperty());
 
         captionLabel.textProperty().bind(getSkinnable().captionProperty());
+
+        // should have same time
+        readOnlyField.textProperty().bind(getSkinnable().timeValueProperty().asString());
     }
 }

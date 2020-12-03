@@ -7,6 +7,17 @@
     -fx-background-color: magenta;
 }
 
+.my-time-control:mandatory .editable-time-field {
+    -fx-background-color: green;
+}
+
+.my-time-control:invalid .editable-time-field {
+    -fx-background-color: red;
+}
+
 .my-time-control .caption-label {
     -fx-fill: pink;
+}
+.my-time-control .read-only-field{
+
 }
