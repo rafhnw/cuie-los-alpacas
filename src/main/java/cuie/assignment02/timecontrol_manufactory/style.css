@@ -21,3 +21,7 @@
 .my-time-control .read-only-field{
 
 }
+
+.my-time-control:convertible .editable-time-field {
+    -fx-text-fill: green;
+}

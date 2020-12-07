@@ -14,8 +14,10 @@ public class MyTimeControl extends Control {
     // define pseudo classes
     private static final PseudoClass MANDATORY_CLASS = PseudoClass.getPseudoClass("mandatory");
     private static final PseudoClass INVALID_CLASS = PseudoClass.getPseudoClass("invalid");
+    private static final PseudoClass CONVERTIBLE_CLASS = PseudoClass.getPseudoClass("convertible");
 
 
+    // ich in konvertierbar wenn now, oder wenn zwei digets, oder wenn doppelpunkt oder wenn 0 bis 2 digets
     private static final String CONVERTIBLE_REGEX = "now|(\\d{1,2}[:]{0,1}\\d{0,2})";
     private static final String TIME_FORMAT_REGEX = "\\d{2}:\\d{2}";
 
@@ -49,6 +51,13 @@ public class MyTimeControl extends Control {
         }
     };
 
+    private final BooleanProperty convertible = new SimpleBooleanProperty(){
+        @Override
+        protected void invalidated() {
+            pseudoClassStateChanged(CONVERTIBLE_CLASS, get());
+        }
+    };
+
     private final BooleanProperty editable = new SimpleBooleanProperty(true);
 
     public MyTimeControl(SkinType skinType) {
@@ -66,6 +75,13 @@ public class MyTimeControl extends Control {
                     @Override
                     public LocalTime fromString(String value) {
                         try {
+                            // alle bedingungen aufführen die dazu führen, dass es convertierbar ist
+                            if(CONVERTIBLE_PATTERN.matcher(value).matches()) {
+                                setConvertible(true);
+                            }
+                            else {
+                                setConvertible(false);
+                            }
                             LocalTime time = super.fromString(value);
                             setInvalid(false);
                             return time;
@@ -94,6 +110,16 @@ public class MyTimeControl extends Control {
         for(String file : stylesheetFile){
             String stylesheet = getClass().getResource(file).toExternalForm();
             getStylesheets().add(stylesheet);
+        }
+    }
+
+    // hier wird effektiv konvertiert
+    public void convert() {
+        if(isConvertible()) { // todo change to switch case
+            if (getTimeAsString().equals("now")) {
+                setTimeValue(LocalTime.now());
+            }
+            // todo add all cases for converting
         }
     }
 
@@ -167,5 +193,17 @@ public class MyTimeControl extends Control {
 
     public void setInvalid(boolean invalid) {
         this.invalid.set(invalid);
+    }
+
+    public boolean isConvertible() {
+        return convertible.get();
+    }
+
+    public BooleanProperty convertibleProperty() {
+        return convertible;
+    }
+
+    public void setConvertible(boolean convertible) {
+        this.convertible.set(convertible);
     }
 }

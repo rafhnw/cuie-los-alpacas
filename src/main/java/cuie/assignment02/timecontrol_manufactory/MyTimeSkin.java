@@ -32,6 +32,7 @@ class MyTimeSkin extends SkinBase<MyTimeControl> {
         layoutParts();
         setupValueChangeListeners();
         setupBindings();
+        setupEventHandlers();
     }
 
     private void initializeSelf() {
@@ -72,6 +73,10 @@ class MyTimeSkin extends SkinBase<MyTimeControl> {
                 readOnlyField.setVisible(true);
             }
         });
+    }
+    private void setupEventHandlers() {
+        //getSkinable accesses control
+        editableTimeField.setOnAction(event -> getSkinnable().convert());
     }
 
     private void setupBindings() {
